@@ -1,6 +1,6 @@
 import bcrypt from "bcrypt" // to encrypt the password
 import jwt from "jsonwebtoken" // to create a token
-import User from "../models/user.js" // to interact with the database
+import User from "../models/Users.js" // to interact with the database
 
 /* REGISTER USER */
 export const register = async (req,res) => {  //async because we are calling the database and it takes time
