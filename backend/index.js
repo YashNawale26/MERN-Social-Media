@@ -11,8 +11,12 @@ import { fileURLToPath } from "url"; // it is used to convert a file URL to a fi
 import authRoutes from "./routes/auth.js"; // it is used to import the auth routes
 import userRoutes from "./routes/users.js"; // it is used to import the user routes
 import postRoutes from "./routes/posts.js"; // it is used to import the post routes
-import { createPost } from "./controllers/posts.js"; // it is used to import the createPost function from the posts controller
+import { createPost } from "./controllers/post.js"; // it is used to import the createPost function from the posts controller
 import { register } from "./controllers/auth.js"; // it is used to import the register function from the auth controller
+import { verifyToken } from "./middleware/auth.js"; // it is used to import the verifyPost middleware
+// import User from "./models/Users.js"; // it is used to import the User model
+// import Post from "./models/Post.js"; // it is used to import the Post model
+// import { users, posts } from "./data/index.js"; 
 
 /* CONFIGURATIONS */
 const __filename = fileURLToPath(import.meta.url);  // it is used to get the filename of the current module
@@ -55,7 +59,6 @@ const PORT = process.env.PORT || 6001;
 mongoose.connect(process.env.MONGO_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    // useCreateIndex: true,
 }).then(() => {
     app.listen(PORT, () => {
         console.log(`Server is running on port ${PORT}`);
