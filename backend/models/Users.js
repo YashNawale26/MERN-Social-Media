@@ -19,16 +19,25 @@ const UserSchema = new mongoose.Schema({
         max: 50,
         unique: true,
     },
+    password: {
+        type: String,
+        required: true,
+        min: 5,
+    },
+    picturePath: {
+        type: String,
+        default: "",
+    },
     friends: {
         type: Array,
         default: [],
-    }, 
+    },
     location: String,
     occupation: String,
     viewedProfile: Number,
     impressions: Number,
-}, {timestamps: true} // auto create createdAt and updatedAt timestamps
-); 
+}, { timestamps: true } // auto create createdAt and updatedAt timestamps
+);
 
 const User = mongoose.model("User", UserSchema); // create a model from the schema in the database
 

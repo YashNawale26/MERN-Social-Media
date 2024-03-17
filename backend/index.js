@@ -8,6 +8,7 @@ import helmet from "helmet"; // it is used to secure the Express app by setting 
 import morgan from "morgan"; // it is used to log the HTTP requests
 import path from "path"; // it is used to work with file and directory paths
 import { fileURLToPath } from "url"; // it is used to convert a file URL to a file path
+
 import authRoutes from "./routes/auth.js"; // it is used to import the auth routes
 import userRoutes from "./routes/users.js"; // it is used to import the user routes
 import postRoutes from "./routes/posts.js"; // it is used to import the post routes
@@ -63,6 +64,4 @@ mongoose.connect(process.env.MONGO_URL, {
     app.listen(PORT, () => {
         console.log(`Server is running on port ${PORT}`);
     });
-}).catch((error) => {
-    console.log(error.message);
-});
+}).catch((error) => console.log(`${error} did not connect`));
