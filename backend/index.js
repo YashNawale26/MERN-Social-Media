@@ -15,9 +15,9 @@ import postRoutes from "./routes/posts.js"; // it is used to import the post rou
 import { createPost } from "./controllers/post.js"; // it is used to import the createPost function from the posts controller
 import { register } from "./controllers/auth.js"; // it is used to import the register function from the auth controller
 import { verifyToken } from "./middleware/auth.js"; // it is used to import the verifyPost middleware
-// import User from "./models/Users.js"; // it is used to import the User model
-// import Post from "./models/Post.js"; // it is used to import the Post model
-// import { users, posts } from "./data/index.js"; 
+import User from "./models/Users.js"; // it is used to import the User model
+import Post from "./models/Post.js"; // it is used to import the Post model
+import { users, posts } from "./data/index.js"; 
 
 /* CONFIGURATIONS */
 const __filename = fileURLToPath(import.meta.url);  // it is used to get the filename of the current module
@@ -40,11 +40,11 @@ const storage = multer.diskStorage({
         cb(null, "public/assets");
     },
     filename: function (req, file, cb) {
-        cb(null, req.body.name);
+        cb(null, file.originalname);
     },
 });
 
-const upload = multer({ storage})
+const upload = multer({ storage })
 
 /* ROUTES WITH FILES */
 app.post("/auth/register", upload.single("picture"), register);  //middleware while uploading a single picture, register is the uploading function,
@@ -61,7 +61,5 @@ mongoose.connect(process.env.MONGO_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 }).then(() => {
-    app.listen(PORT, () => {
-        console.log(`Server is running on port ${PORT}`);
-    });
+    app.listen(PORT, () => console.log(`Server Port: ${PORT}`));
 }).catch((error) => console.log(`${error} did not connect`));

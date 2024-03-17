@@ -1,33 +1,35 @@
 import mongoose from 'mongoose';
 
-const PostSchema = new mongoose.Schema({
-    userId: {
-        type: String,
-        required: true,
+const postSchema = new mongoose.Schema(
+    {
+        userId: {
+            type: String,
+            required: true,
+        },
+        firstName: {
+            type: String,
+            required: true,
+        },
+        lastName: {
+            type: String,
+            required: true,
+        },
+        location: String,
+        description: String,
+        picturePath: String,
+        userPicturePath: String,
+        likes: {
+            type: Map,
+            of: Boolean,
+        },
+        comments: {
+            type: Array,
+            default: [],
+        },
     },
-    firstName: {
-        type: String,
-        required: true,
-    },
-    lastName: {
-        type: String,
-        required: true,
-    }, 
-    location: String,
-    description: String,
-    picturePath: String ,
-    userPicturePath: String,
-    likes: {
-        type: Map,
-        of: Boolean,
-    },
-    comments: {
-        type: Array,
-        default: [],
-    },
-}, {timestamps: true} // auto create createdAt and updatedAt timestamps
-); 
+    { timestamps: true } // auto create createdAt and updatedAt timestamps
+);
 
-const Post = mongoose.model("Post", PostSchema); // create a model from the schema in the database
+const Post = mongoose.model("Post", postSchema); // create a model from the schema in the database
 
 export default Post;

@@ -31,18 +31,18 @@ export const getFeedPosts = async (req, res) => {
     try {
         const post = await Post.find();
         res.status(200).json(post);
-    } catch (err) {
-        res.status(404).json({ message: err.message })
+    } catch (error) {
+        res.status(404).json({ message: err.message + "Error in getFeedPosts"})
     }
 }
 
 export const getUserPosts = async (req, res) => {
     try {
         const { userId } = req.params;
-        const post = await Post.find( userId );
+        const post = await Post.find({ userId: userId });
         res.status(200).json(post);
     } catch (error) {
-        res.status(404).json({ message: error.message });
+        res.status(404).json({ message: error.message + "Error in getUserPosts"});
     }
 }
 
